@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa 4</title>
+</head>
+<body>
+
+    <form id="form1" action="#">
+
+        <div> Ad: <input id="input-ad" type="text" placeholder="Adınızı yazın"> </div>
+        <div> Soyad: <input id="input-soyad" type="text" placeholder="Soyadınızı yazın"> </div>
+        <div> Mesajınız: <textarea name="" id="text-mesaj" cols="30" rows="10"></textarea> </div>
+        
+        <button id="buton1">Gönder</button>
+
+    </form>
+    
+    <script>
+        const buton1 = document.querySelector("#buton1")
+        const form1 = document.querySelector("#form1")
+
+
+        const inputAd = document.querySelector("#input-ad")
+        const inputSoyad = document.querySelector("#input-soyad")
+        const textMesaj = document.querySelector("#text-mesaj")
+
+        form1.addEventListener( "submit" , (olay)=> {
+            olay.preventDefault() //Formun gönderilmesini durduruyoruz
+
+            if( inputAd.value === "" ) { //ad boşu mu değil mi ona bakılıyor
+                alert("Ad boş olamaz!")
+            } else if( inputSoyad.value === "" ){ //soyad boş mu?
+                alert("Soyad boş olamaz!")
+            } else if( textMesaj.value === "" ){ //Mesaj boş mu?
+                alert("Mesaj boş olamaz!")
+            }else {
+                form1.submit() // form verilerini sunucuya gönder
+            }
+
+        }  )
+
+    </script>
+</body>
+</html>

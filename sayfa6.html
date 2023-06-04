@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa 6</title>
+    <style>
+        #yanitlar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #soru-suresi-eleman {
+            position: fixed;
+            right: 1rem;
+            top: 1rem;
+            font-size: 30px;
+        }
+
+        #dogru-eleman {
+            border: 2px solid green;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        #yanlis-eleman {
+            border: 2px solid red;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="kutu1">
+        <h2 id="soru-eleman">SSSSSSSSSS?</h2>
+        <div id="yanitlar">
+            <button>YYYYYYYYY</button>
+            <button>YYYYYYYYY</button>
+            <button>YYYYYYYYY</button>
+        </div>
+        <span id="dogru-eleman">0</span> <span id="yanlis-eleman">0</span>
+    </section>
+
+    <div id="soru-suresi-eleman"></div>
+
+    <script type="module">
+        import sorular from "./sorular.js"
+
+        //anlık olarak ekranda kaçıncı sorunun olduğunu tutan değişken
+        let aktifSoruNumarasi = 1
+
+        //ekranda yer alan soru için kalan süre
+        let aktifSoruKalanSuresi = 10 //saniye olarak
+
+        //puanları tutan değişkenler
+        let dogruPuan = 0
+        let yanlisPuan = 0
+
+        //ihtiyaç duyduğumuz htm elemanlarını JS DOM nesnesi olarak alıyoruz
+        const soruElemani = document.querySelector("#soru-eleman")
+        const yanitElemanlari = document.querySelectorAll("#yanitlar button")
+        const soruSuresiElemani = document.querySelector("#soru-suresi-eleman")
+        const dogruEleman = document.querySelector("#dogru-eleman")
+        const yanlisEleman = document.querySelector("#yanlis-eleman")
+
+        // istenilen sıradaki bir soruyu ekranda ilgili elemanların içine dolduran fonksiyon
+        function soruGoster(soruNumarasi) {
+            //1. soruyu doldur
+            soruElemani.textContent = sorular[soruNumarasi-1].soru
+
+            //1. yanıtları buttonlara doldur
+            yanitElemanlari.forEach((buton, indis) => {
+                buton.textContent = sorular[soruNumarasi-1].yanitlar[indis]
+            })
+
+            //ekrana getirilen soru için süreyi 10 saniye ayarlayan işlem
+            aktifSoruKalanSuresi = 10
+        }
+
+        //sayfa açılır açılmaz ziyaretçiye ilk soruyu gösteriyoruz
+        soruGoster(1)   
+
+
+        //her 10 saniyede bir, sıradaki soruyu ekrana getiren zamanlayıcı
+        let zamanlayici1 = soruZamanlayiciBaslat()
+
+        function soruZamanlayiciBaslat() {
+            return setInterval( ()=>{ 
+
+                if( sorular.length !== aktifSoruNumarasi ) {
+                    aktifSoruNumarasi++
+                    soruGoster( aktifSoruNumarasi )
+                }else {
+                    clearInterval(zamanlayici1)
+                    clearInterval(zamanlayici2)
+                }
+
+                } , 10000  )
+        }
+
+        //her saniye çalışarak, ekrandaki soru için kalan süreyi 1 saniye eksilten zamanlayıcı
+        const zamanlayici2 = setInterval( ()=> {
+            soruSuresiElemani.textContent = aktifSoruKalanSuresi
+            aktifSoruKalanSuresi--
+        } , 1000 )
+
+
+        //puan hesaplamaları için kodlar
+        yanitElemanlari.forEach( (buton, indis)=>{
+            buton.addEventListener( "click", (olay)=>{
+                let yanitNumarasi = (indis+1)
+
+                if( sorular[aktifSoruNumarasi-1].dogru === yanitNumarasi ) {
+                    //eğer if buraya girdiyse, adam aktif soruya doğru yanıt verdi
+                    dogruPuan++
+                    dogruEleman.textContent = dogruPuan
+                } else {
+                    yanlisPuan++
+                    yanlisEleman.textContent = yanlisPuan
+                }
+
+                if( sorular.length !== aktifSoruNumarasi ) {
+                    aktifSoruNumarasi++
+                    soruGoster( aktifSoruNumarasi )
+
+                    clearInterval(zamanlayici1)
+                    zamanlayici1 = soruZamanlayiciBaslat()
+                }else {
+                    clearInterval(zamanlayici1)
+                    clearInterval(zamanlayici2)
+
+                    document.querySelector("section").remove()
+                    soruSuresiElemani.remove()
+
+                    alert("Puanınız: " + dogruPuan)
+                }
+            } )
+        } )
+    </script>
+</body>
+
+</html>

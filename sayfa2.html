@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa 2</title>
+    <style>
+        div#popup1 {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            background-color: black;
+            color: white;
+            padding: 3rem;
+
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+<section>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, perspiciatis expedita corporis eligendi deleniti error temporibus cupiditate, cum ullam distinctio dolorum ex itaque saepe praesentium voluptate reprehenderit omnis quo repellendus accusamus neque alias ratione, possimus magni assumenda? Perspiciatis, rerum quidem?</p>
+    <p>Delectus, voluptate. Cumque incidunt voluptates dolorem, alias iusto deserunt tenetur adipisci quibusdam similique quidem, aliquid non ullam sed. Corrupti eveniet sequi suscipit modi inventore expedita cupiditate vero nemo dolorem minima accusantium odio officia sit in itaque, eum saepe delectus incidunt!</p>
+    <p>Atque unde minima obcaecati quibusdam dicta reprehenderit, placeat eum laudantium, ab cum sit sint tenetur natus nam cupiditate doloribus laboriosam nulla magnam totam molestias vel, illo quo assumenda consectetur? Non corporis unde neque! Aliquam praesentium cum aut iusto, tempore modi.</p>
+    <p>Hic ea similique laudantium laboriosam non molestiae. Dignissimos, debitis. Delectus reprehenderit veniam, repellendus officiis esse in vel dolor pariatur qui sequi, culpa, eligendi facilis dicta expedita minima accusantium! Incidunt perferendis iusto ipsum voluptatibus corporis ut excepturi illum est iure tempora?</p>
+    <p>Autem, reprehenderit modi culpa illum natus voluptatibus cupiditate assumenda, necessitatibus quia eveniet omnis. Amet consectetur iusto, doloribus autem quasi atque beatae ea laboriosam saepe voluptatem facere eum nobis eaque necessitatibus voluptas perferendis numquam magnam id iste quod dicta ab minima.</p>
+    <p>Reiciendis dolores possimus harum! Tempore veritatis, vero quae molestias quos minus deserunt quasi neque alias beatae incidunt suscipit asperiores quis assumenda repudiandae natus perferendis iste officiis impedit cum eos? Aut totam at harum nostrum. Veritatis, voluptatem provident? Modi, vitae illo.</p>
+    <p>Nemo quis impedit eum voluptate sit facere odio soluta mollitia tenetur! Repudiandae ratione assumenda iusto nostrum voluptates, nulla consectetur dicta! Libero repellat aspernatur, aliquam vitae quia similique et itaque neque excepturi officia necessitatibus officiis alias exercitationem ea nulla! Repudiandae, cumque?</p>
+    <p>Laborum qui voluptatum ratione at nulla vel, explicabo debitis id nostrum sunt odit repudiandae facere assumenda sed eum eligendi! Doloribus mollitia consequatur nemo omnis eum fugit praesentium nulla necessitatibus ipsa, cumque qui voluptate nam maiores suscipit? Facere enim consequuntur nobis!</p>
+    <p>Aliquam ipsum repudiandae vitae assumenda architecto hic sequi! Placeat cum quia est repudiandae totam facere hic quibusdam laboriosam eaque, odit natus error aliquid excepturi nam quidem eveniet doloribus perspiciatis odio voluptate inventore quasi non nesciunt iusto veniam? Voluptas, consequatur ipsum!</p>
+    <p>Laudantium, esse molestiae laborum natus voluptate aut facilis accusamus, exercitationem laboriosam optio, impedit ad. Ex repudiandae, nobis unde dolores magnam quaerat hic veniam quae, repellat inventore aliquam vel nisi qui harum quis beatae, neque dignissimos et molestias minima. Dolorum, quis?</p>
+</section>
+
+<div id="popup1">
+    Bugün tüm alışverişlerde kargo ücretsiz!
+</div>
+
+<script>
+    const popup1Elemani = document.querySelector("#popup1")
+
+    setTimeout( ()=>{   popup1Elemani.style.display = "block"   } , 4000  )
+
+    //body tıklandığında popup1 divi gizlensin
+    const bodyElemani = document.querySelector("body")
+    bodyElemani.addEventListener( "click", (olay)=>{
+
+        if( olay.target.id !== "popup1") {
+            popup1Elemani.style.display = "none"
+        }
+
+    } )
+</script>
+
+</body>
+</html>

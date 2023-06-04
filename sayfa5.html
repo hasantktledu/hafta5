@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfa 5</title>
+</head>
+<body>
+    <div id="kutu1"></div>
+
+    <button id="timer-durdur">Durdur</button>
+
+    <div id="geri-sayim"></div>
+
+    <script>
+        let saniye = 0
+        let geriSayim = 3
+
+        const kutu1 = document.querySelector("#kutu1")
+        const timerDurdur = document.querySelector("#timer-durdur")
+        const geriSayimElemani = document.querySelector("#geri-sayim")
+        
+        kutu1.textContent = saniye
+        geriSayimElemani.textContent = geriSayim
+
+        const zamanlayici1 = setTimeout( ()=>{ 
+
+            saniye++
+            kutu1.textContent = saniye
+
+         } , 3000 )
+
+         timerDurdur.addEventListener( "click", ()=>{
+            clearTimeout( zamanlayici1 )
+         } )
+
+
+         const zamanlayici2 = setInterval( ()=>{
+            if( geriSayim !== 0 ) {
+                geriSayim--
+                geriSayimElemani.textContent = geriSayim
+            }else {
+                timerDurdur.remove()
+                clearInterval(zamanlayici2)
+            }
+         } , 1000 )
+
+
+
+    </script>
+</body>
+</html>
